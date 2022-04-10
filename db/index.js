@@ -83,6 +83,17 @@ async function getUserById(userId) {
     throw error;
   }
 }
+async function getUserByUsername(username){
+    try{
+        const { rows: [user] } =await client.query(` 
+        SELECT * FROM users
+        WHERE username=$1;
+        `, [username]);
+        return user;
+    } catch(error) {
+        throw error;
+    }
+}
 
 /**
  * POST Methods
@@ -334,6 +345,7 @@ module.exports = {
   getAllPosts,
   getPostsByUser,
   getPostsByTagName,
+  getUserByUsername,
   createTags,
   getAllTags,
   createPostTag,
