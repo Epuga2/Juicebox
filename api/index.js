@@ -5,6 +5,7 @@ const apiRouter = express.Router();
 const jwt = require('jsonwebtoken');
 const { getUserById } = require('../db');
 const { JWT_SECRET } = process.env;
+const token = jwt.sign({"username": "albert", "password": "bertie99"}, JWT_SECRET);
 
 // set `req.user` if possible
 apiRouter.use(async (req, res, next) => {
